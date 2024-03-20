@@ -22,11 +22,16 @@ public partial class NotesPage : ContentPage
 
         FilePicker.PickAsync();
         File.WriteAllText(path, text);
+        DisplayAlert("Sucesso", "Arquivo salvo com sucesso", "Ok");
     }
 
     private void DeleteButton_Clicked(object sender, EventArgs e)
     {
-        text = FileEditor.Text;
+        if(File.Exists(path))
+        {
+            File.Delete(path);
+            FileEditor.Text = "";
+        }
         
     }
 }
